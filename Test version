@@ -1,0 +1,97 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class List {
+    size_t SIZE = 300;
+    string data[300];
+    bool filled_line[300];
+    char datatype[300];
+public:
+    void push(int for_end) {
+        for (int i = 0; i < for_end; i++) {
+            cout << "Введите информацию: ";
+            cin >> data[i];
+            cout << endl;
+            filled_line[i] = true;
+        }
+    }
+
+    void print(int for_print, int key) {
+        if (for_print == 0) {
+            for_print = 300;
+        }
+        if (key == 1) {
+            for (int i = 0; i < for_print; i++) {
+                cout << data[i] << endl;
+            }
+        }
+        if (key != 1) {
+            for (int i = 0; i < for_print; i++) {
+                cout << data[i];
+            }
+        }
+    }
+
+    int select() {
+        int start = 0;
+        int end = 0;
+        int select_action = 0;
+        cout << "Enter start:";
+        cin >> start;
+        cout << endl;
+        cout << "Enter end:";
+        cin >> end;
+        cout << endl;
+        cout << "select action \n 1.delete\n 2.datatype\n 3.push\n 4.Math Enter answer:";
+        cin >> select_action;
+        cout << endl;
+        if (select_action == 3) {
+            for (int i = start; i < end; i++) {
+                if (filled_line[i] == true) {
+                    cout << "Хотите перезаписать?: ";
+                    char yn = '0';
+                    cin >> yn;
+                    cout << endl;
+                    if (yn == 'y') {
+                        cout << "Введите информацию: ";
+                        cin >> data[i];
+                        cout << endl;
+                    }
+                }
+                if (filled_line[i] == false) {
+                    cout << "Введите информацию: ";
+                    cin >> data[i];
+                    cout << endl;
+                    filled_line[i] = true;
+                }
+            }
+        }
+        if (select_action == 2) {
+            for (int i = start; i < end; i++) {
+                cout << "Укажите тип данных:";
+                cin >> datatype[i];
+                cout << endl;
+            }
+        }
+        if (select_action == 4) {
+            cout << "Введите математическое действие:";
+            char math_act = '0';
+            cin >> math_act;
+            
+        }
+    }
+
+    void help_list() {
+        cout << "push - Заполнение до list.push(до скольки заполнять);\n";
+    }
+};
+
+int main() {
+
+    List list;
+    list.select();
+    list.select();
+    return 0;
+}
